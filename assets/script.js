@@ -1,7 +1,34 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(function () {
+$(document).ready(function () {
+  // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
+  // the code isn't run until the browser has finished rendering all the elements
+  // in the html.
+
+  // variables for time
+  var displayedHour = dayjs().format("H");
+  var currentHour = dayjs().format("H");
+  var startTime = 8;
+  var endTime = 16;
+
+
+  // save button click event listener
+  $(".saveBtn").on("click", function () {
+
+  });
+
+
+  // displays ctime in header
+  function updateClock()
+
+  // creates calendar
+  function createCalendar()
+
+  // changes color of the block given the time
+  function updateBlockColor()
+
+// retrieves local stored data
+function loadSavedEvents()
+
+});
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -20,4 +47,4 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
