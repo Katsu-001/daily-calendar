@@ -9,6 +9,8 @@ $(document).ready(function () {
   var startTime = 8;
   var endTime = 16;
 
+  createCalendar();
+  updateBlockColor();
 
   // Updates clock
   setInterval(updateClock, 1000);
@@ -21,13 +23,12 @@ $(document).ready(function () {
 
   // displays ctime in header
   function updateClock() {
-    // Gather current time and display it in the header
+    // Sets current time in header
     let currentTime = dayjs().format("MMMM D YYYY, h:mm:ss a");
     $("#currentTime").html(currentTime);
 
     // Gather current hour, for comparison to the displayed hour
     currentHour = dayjs().format("H");
-
     // Updates displayed hour if hour has changed
     if (currentHour != displayedHour) {
       displayedHour = currentHour;
@@ -38,7 +39,36 @@ $(document).ready(function () {
 
 
   // creates calendar
-  // function createCalendar()
+  function createCalendar() {
+    for (let i = startTime; i <= endTime; i++) {
+      let calendar = document.getElementById("calendar");
+
+      let timeBlock = document.createElement("div");
+      timeBlock.setAttribute("class", "time-block row ");
+      timeBlock.setAttribute("id", "hour-" + i);
+      calendar.appendChild(timeBlock);
+
+      let timeText = document.createElement("div");
+      timeText.setAttribute("class", "hour col-2 col-md-1 text-center py-3");
+      timeText.innerText = dayjs().hour(i).format("hA");
+      timeBlock.appendChild(timeText);
+
+      let textArea = document.createElement("textarea");
+      textArea.setAttribute("class", "eventText col-8 col-md-10");
+      textArea.setAttribute("rows", "3");
+      timeBlock.appendChild(textArea);
+
+      let saveButton = document.createElement("button");
+      saveButton.setAttribute("class", "saveBtn btn col-2 col-md-1");
+      saveButton.setAttribute("aria-label", "save");
+      timeBlock.appendChild(saveButton);
+
+      let icon = document.createElement("i");
+      icon.setAttribute("class", "fas fa-save");
+      icon.setAttribute("aria-hidden", "true");
+      saveButton.appendChild(icon);
+    }
+  }
 
   // changes color of the block given the time
   function updateBlockColor() {
@@ -46,7 +76,7 @@ $(document).ready(function () {
       // Get the hour from the id of the time block
       let calendarBlockHour = parseInt($(this).attr("id").split("-")[1]);
 
-      // Determine if the time block is in the past, present, or future and set the background color accordingly
+      // Sets Past, Present, or Future class
       if (calendarBlockHour < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("present future");
@@ -70,7 +100,7 @@ $(document).ready(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  // 
+  //
   //
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
@@ -82,7 +112,7 @@ $(document).ready(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  // 
+  //
   //
   // TODO: Add code to display the current date in the header of the page.
   // -done-
