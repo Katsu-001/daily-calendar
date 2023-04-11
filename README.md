@@ -13,6 +13,6 @@ Application will automatically start once the page is loaded. Type into the hour
 
 ## URL
 
-[Deployed URL]()
+[Deployed URL](https://katsu-001.github.io/daily-calendar/)
 
 [GitHub Repo](https://github.com/Katsu-001/daily-calendar)
